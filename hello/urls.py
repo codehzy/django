@@ -1,5 +1,6 @@
 from django.urls import path, re_path
-from hello.views import hello_world, hello_china, hello_html, article_list, search
+from hello.views import hello_world, hello_china, hello_html, article_list, search, render_str, render_html, \
+    http_request, http_response
 
 urlpatterns = [
     path('world/', hello_world, name='hello_world'),
@@ -10,5 +11,9 @@ urlpatterns = [
     # 获取url中的正则匹配的参数
     re_path(r'article/(?P<month>0?[1-9]|[012])/$', article_list, name='article_list'),
     # 通过Request对象获取GET参数
-    re_path('search', search, name='search')
+    re_path('search', search, name='search'),
+    re_path('render/str', render_str, name='render_str'),
+    re_path('render/html', render_html, name='render_html'),
+    re_path('http/req', http_request, name='http_request'),
+    re_path('http/rep', http_response, name='http_response'),
 ]
