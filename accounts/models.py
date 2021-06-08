@@ -24,6 +24,8 @@ class User(CommonModel):
     remark = models.CharField('备注', max_length=64, null=True, blank=True)
     email = models.EmailField('用户的邮箱', max_length=64, null=True, blank=True)
 
+    collect_ques = models.ManyToManyField('Question')
+
     class Meta:
         db_table = 'user'
 
@@ -41,5 +43,30 @@ class Manager(User):
 
 class Profile(CommonModel):
     """ 用户详细信息 """
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name='profile', db_column='user')
     nickname = models.CharField('昵称', max_length=64)
+
+
+class Question(CommonModel):
+    """问题"""
+    name = models.CharField('问题名称', max_length=64)
+
+
+class Answer(CommonModel):
+    """答案"""
+    question = models.ForeignKey(Question, on_delete=models.CASCADE,
+                                 related_name='answers', verbose_name='关联的问题')
+
+
+class Classify(models.Model):
+    """
+    分类
+    1. 酒水
+        2， 啤酒
+        3， 白酒
+    """
+    name = models.CharField('名称', max_length=64)
+    parent = models.ForeignKey('self', related_name='children',
+                               on_delete=models.CASCADE)
 
