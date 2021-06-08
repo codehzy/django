@@ -6,6 +6,7 @@ from django.http import FileResponse
 # Create your views here.
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.views.generic import TemplateView
 
 
 def hello_world(request):
@@ -104,3 +105,7 @@ def article_detail(request, article_id):
         # return redirect('/hello/not/found/')
         # return redirect('http://www.imooc.com')
     return HttpResponse('文章{}的内容'.format(article_id))
+
+
+class HomeView(TemplateView):
+    template_name = "home.html"
