@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 from hello.views import hello_world, hello_china, hello_html, article_list, search, render_str, render_html, \
-    http_request, http_response, article_detail, no_data_404, HomeView, index
+    http_request, http_response, article_detail, no_data_404, HomeView, index, tag, mine_filter
 
 urlpatterns = [
     path('world/', hello_world, name='hello_world'),
@@ -20,4 +20,6 @@ urlpatterns = [
     path('article/<int:article_id>/', article_detail, name='article_detail'),
     re_path('home/', HomeView.as_view(), name='HomeView'),
     re_path('index/', index, name='index'),
+    re_path('tag/', tag, name='tag'),
+    re_path('mine/filter', mine_filter, name='mine_filter'),
 ]

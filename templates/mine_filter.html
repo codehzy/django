@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+</head>
+<body>
+    <p> {{ username }}</p>
+    {% load format_name %}
+    <p> {{ username|fmt_username:2 }}</p>
+</body>
+</html>

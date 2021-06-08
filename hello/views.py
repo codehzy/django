@@ -108,7 +108,7 @@ def article_detail(request, article_id):
 
 
 class Cat(object):
-    
+
     def display(self):
         return "我是中华田园猫"
 
@@ -135,3 +135,26 @@ def index(request):
 
 class HomeView(TemplateView):
     template_name = "home.html"
+
+
+def tag(request):
+    """ DTL的标签练习 """
+    list_users = [
+        {'name': '张三', 'age': 34},
+        {'name': '李四', 'age': 23},
+        {'name': '张三2', 'age': 34},
+        {'name': '李四2', 'age': 33},
+    ]
+    # list_users = []
+
+    return render(request, 'tag.html', {
+        'list_users': list_users
+    })
+
+
+def mine_filter(request):
+    """ 自定义过滤器 """
+    username = '张三的昵称'
+    return render(request, 'mine_filter.html', {
+        "username": username
+    })
