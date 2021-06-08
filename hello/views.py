@@ -1,6 +1,6 @@
 # coding:utf-8
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.http import FileResponse
 
 # Create your views here.
@@ -84,5 +84,23 @@ def http_response(request):
     # }
     # return JsonResponse(user_info)
 
-    response = FileResponse(open('text.txt','rb'))
+    response = FileResponse(open('text.txt', 'rb'))
     return response
+
+
+def no_data_404(request):
+    # 重定向 404
+    return HttpResponse('404')
+
+
+def article_detail(request, article_id):
+    """
+    文章详情，ID是从1000开始的整数
+    :param article_id: 文章ID
+    """
+    if article_id < 1000:
+        # return HttpResponseRedirect(reverse('no_data_404'))
+        return redirect('no_data_404')
+        # return redirect('/hello/not/found/')
+        # return redirect('http://www.imooc.com')
+    return HttpResponse('文章{}的内容'.format(article_id))
