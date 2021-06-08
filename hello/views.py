@@ -44,7 +44,7 @@ def search(request):
 
 def render_str(request):
     """render_to_string函数使用"""
-    templ_name = 'index.html'
+    templ_name = 'index2.html'
     html = render_to_string(template_name=templ_name)
     return HttpResponse(html)
 
@@ -105,6 +105,32 @@ def article_detail(request, article_id):
         # return redirect('/hello/not/found/')
         # return redirect('http://www.imooc.com')
     return HttpResponse('文章{}的内容'.format(article_id))
+
+
+class Cat(object):
+    
+    def display(self):
+        return "我是中华田园猫"
+
+
+def index(request):
+    username = '张三'
+    age = 25
+    img_url = '/media/images/python.jpg'
+
+    list_users = [
+        {'name': '张三', 'age': 34},
+        {'name': '李四', 'age': 23}
+    ]
+
+    cat = Cat()
+    return render(request, 'index.html', {
+        'username': username,
+        'age': age,
+        'img_url': img_url,
+        'list_users': list_users,
+        'cat': cat
+    })
 
 
 class HomeView(TemplateView):

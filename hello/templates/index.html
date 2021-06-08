@@ -8,6 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>我的html标签11111asdasd1</h1>
+<h1>首页-DTLS_hello</h1>
+<p>个人介绍: {{ username }} : {{ age }}</p>
+<img src="{{ img_url }}" alt="">
+<h3>用户列表</h3>
+{% for user in list_users %}
+    <p>用户名： {{ user.name }}</p>
+    <p>年龄： {{ user.age }}</p>
+{% endfor %}
+<h3>猫的信息</h3>
+{{ cat.display }}
 </body>
 </html>
